@@ -9,12 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
 
-	//坦克的初始位置
-	int x=375 , y=275;
-	//坦克的默认方向
-	Dir dir = Dir.DOWN;
-	//坦克的速度
-	final int speed = 10;
+	Tank myTank = new Tank(375, 275, Dir.DOWN);
 	
 	public TankFrame() {
 		setSize(800, 600);
@@ -35,25 +30,9 @@ public class TankFrame extends Frame{
 	
 	//窗口重新绘制的时候会调用该方法
 	@Override
-	public void paint(Graphics g) {
-		g.fillRect(x, y, 50, 50);
-		switch (dir) {
-		case LEFT:
-			x -= speed;
-			break;
-		case UP:
-			y -= speed;
-			break;
-		case RIGHT:
-			x += speed;
-			break;
-		case DOWN:
-			y += speed;
-			break;
-
-		default:
-			break;
-		}
+	public void paint(/*画笔*/Graphics g) {
+		myTank.paint(g);
+		
 	}
 	
 	//键盘监听处理类
@@ -114,11 +93,12 @@ public class TankFrame extends Frame{
 			
 		}
 
+		//设置主战坦克的方向
 		private void setMainTankDir() {
-			if (bL) dir = Dir.LEFT;
-			if (bU) dir = Dir.UP;
-			if (bR) dir = Dir.RIGHT;
-			if (bD) dir = Dir.DOWN;
+			if (bL) myTank.setDir(Dir.LEFT);
+			if (bU) myTank.setDir(Dir.UP);
+			if (bR) myTank.setDir(Dir.RIGHT);
+			if (bD) myTank.setDir(Dir.DOWN);
 		}
 		
 	}
