@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame{
 
 	Tank myTank = new Tank(375, 275, Dir.DOWN);
+	Bullet bullet = new Bullet(350, 250, Dir.DOWN);
 	
 	public TankFrame() {
 		setSize(800, 600);
@@ -32,7 +33,7 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(/*画笔*/Graphics g) {
 		myTank.paint(g);
-		
+		bullet.paint(g);
 	}
 	
 	//键盘监听处理类

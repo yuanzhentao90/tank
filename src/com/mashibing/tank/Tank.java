@@ -2,13 +2,11 @@ package com.mashibing.tank;
 
 import java.awt.Graphics;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
 public class Tank {
 
 	private int x,y;
 	private Dir dir = Dir.DOWN;
-	private static final int speed = 10;
+	private static final int speed = 5;
 	private boolean moving = false;
 	
 	public Tank() {
