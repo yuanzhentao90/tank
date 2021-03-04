@@ -9,15 +9,17 @@ public class Tank {
 	private Dir dir = Dir.DOWN;
 	private static final int speed = 5;
 	private boolean moving = false;
+	private TankFrame tf;
 	
 	public Tank() {
 	}
 
-	public Tank(int x, int y, Dir dir) {
+	public Tank(int x, int y, Dir dir,TankFrame tf) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.tf = tf;
 	}
 
 	public void paint(Graphics g) {
@@ -87,6 +89,16 @@ public class Tank {
 
 	public void setMoving(boolean moving) {
 		this.moving = moving;
+	}
+
+	public Tank(TankFrame tf) {
+		super();
+		this.tf = tf;
+	}
+
+	public void fire() {
+		tf.bullet = new Bullet(this.x, y, this.dir);
+		
 	}
 	
 }
