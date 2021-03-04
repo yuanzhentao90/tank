@@ -62,9 +62,7 @@ public class TankFrame extends Frame{
 			default:
 				break;
 			}
-			
 			setMainTankDir();
-			
 		}
 		
 		//键被抬起来的时候调用
@@ -88,17 +86,18 @@ public class TankFrame extends Frame{
 			default:
 				break;
 			}
-			
 			setMainTankDir();
-			
 		}
 
 		//设置主战坦克的方向
 		private void setMainTankDir() {
+			myTank.setMoving(true);
 			if (bL) myTank.setDir(Dir.LEFT);
 			if (bU) myTank.setDir(Dir.UP);
 			if (bR) myTank.setDir(Dir.RIGHT);
 			if (bD) myTank.setDir(Dir.DOWN);
+			
+			if (!bL && !bU && !bR && !bD) myTank.setMoving(false);
 		}
 		
 	}
