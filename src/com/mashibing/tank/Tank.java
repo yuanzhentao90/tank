@@ -1,6 +1,7 @@
 package com.mashibing.tank;
 
-import java.awt.Color;
+import static org.hamcrest.CoreMatchers.theInstance;
+
 import java.awt.Graphics;
 
 public class Tank {
@@ -10,6 +11,8 @@ public class Tank {
 	private static final int speed = 5;
 	private boolean moving = false;
 	private TankFrame tf;
+	
+	public static int WIDTH = ResourceMgr.tankD.getWidth(),HEIGHT = ResourceMgr.tankD.getHeight();
 	
 	public Tank() {
 	}
@@ -111,7 +114,9 @@ public class Tank {
 	}
 
 	public void fire() {
-		tf.bullets.add(new Bullet(this.x, y, this.dir,tf));
+		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
+		int bY = this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
+		tf.bullets.add(new Bullet(bX, bY, this.dir,tf));
 	}
 	
 }

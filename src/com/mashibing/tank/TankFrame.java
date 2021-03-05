@@ -16,6 +16,7 @@ public class TankFrame extends Frame{
 
 	Tank myTank = new Tank(375, 275, Dir.DOWN,this);
 	List<Bullet> bullets = new ArrayList<>();
+	List<Tank> tanks = new ArrayList<>();
 	static final int GAME_WIDTH=800 , GAME_HEIGHT=600;
 	
 	public TankFrame() {
@@ -58,8 +59,9 @@ public class TankFrame extends Frame{
 		g.setColor(Color.white);
 		g.drawString("子弹的格式"+bullets.size(), 10, 60);
 		g.setColor(c);
-		
+		//己方坦克
 		myTank.paint(g);
+		//坦克子弹
 //		for(Bullet bullet : bullets) //这种方法遍历时不能删除集合中的元素
 		for (int i = 0; i < bullets.size(); i++) //这种方法遍历时可以删除集合中的元素不会发生异常 
 			bullets.get(i).paint(g);
@@ -68,6 +70,10 @@ public class TankFrame extends Frame{
 //			Bullet bullet = iterator.next();
 //			if (!bullet.isLive) iterator.remove();
 //		}
+		
+		//敌方坦克
+		for (int i = 0; i < tanks.size(); i++)
+			tanks.get(i).paint(g);
 	}
 	
 	//键盘监听处理类
