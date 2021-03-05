@@ -6,7 +6,7 @@ public class Main {
 		TankFrame t = new TankFrame();
 		
 		for (int i = 0; i < 5; i++) {
-			t.tanks.add(new Tank(50+50*i, 200, Dir.DOWN, t));
+			t.tanks.add(new Tank(50+50*i, 200, Dir.DOWN,Group.BAD, t));
 		}
 		
 		while (true) {

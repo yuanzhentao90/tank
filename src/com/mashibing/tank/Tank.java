@@ -14,16 +14,19 @@ public class Tank {
 	
 	private boolean isLive = true;
 	
+	private Group group = Group.BAD;
+	
 	public static int WIDTH = ResourceMgr.tankD.getWidth(),HEIGHT = ResourceMgr.tankD.getHeight();
 	
 	public Tank() {
 	}
 
-	public Tank(int x, int y, Dir dir,TankFrame tf) {
+	public Tank(int x, int y, Dir dir,Group group,TankFrame tf) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.group = group;
 		this.tf = tf;
 	}
 
@@ -116,10 +119,18 @@ public class Tank {
 		this.tf = tf;
 	}
 
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
 	public void fire() {
 		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
 		int bY = this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
-		tf.bullets.add(new Bullet(bX, bY, this.dir,tf));
+		tf.bullets.add(new Bullet(bX, bY, this.dir,this.group,tf));
 	}
 
 	public void die() {
