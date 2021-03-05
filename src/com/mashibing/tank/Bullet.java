@@ -15,7 +15,7 @@ public class Bullet {
 	private int x,y;
 	private Dir dir;
 	
-	private boolean isLive = true;
+	boolean isLive = true;
 	TankFrame tf = null;
 	
 	public Bullet(int x, int y, Dir dir,TankFrame tf) {

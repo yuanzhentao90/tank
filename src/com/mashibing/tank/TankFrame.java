@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TankFrame extends Frame{
@@ -62,6 +63,11 @@ public class TankFrame extends Frame{
 //		for(Bullet bullet : bullets) //这种方法遍历时不能删除集合中的元素
 		for (int i = 0; i < bullets.size(); i++) //这种方法遍历时可以删除集合中的元素不会发生异常 
 			bullets.get(i).paint(g);
+		
+//		for (Iterator<Bullet> iterator = bullets.iterator(); iterator.hasNext();) {
+//			Bullet bullet = iterator.next();
+//			if (!bullet.isLive) iterator.remove();
+//		}
 	}
 	
 	//键盘监听处理类
