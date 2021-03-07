@@ -13,7 +13,7 @@ public class Explode {
 	
 	private int x,y;
 	
-	private boolean isLive = true;
+//	private boolean isLive = true;
 	TankFrame tf = null;
 	
 	private int step = 0;
@@ -22,11 +22,13 @@ public class Explode {
 		this.x = x;
 		this.y = y;
 		this.tf = tf;
+		
+		new Thread(()->new Audio("audio/explode.wav").play()).start();;
 	}
 	
 	public void paint(Graphics g) {
 		g.drawImage(ResourceMgr.explodes[step++],x,y,null);
 		if(step >= ResourceMgr.explodes.length)
-			step = 0;
+			tf.explodes.remove(this);
 	}
 }
