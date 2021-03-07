@@ -1,7 +1,5 @@
 package com.mashibing.tank;
 
-import static org.hamcrest.CoreMatchers.theInstance;
-
 import java.awt.Graphics;
 
 public class Tank {
