@@ -148,6 +148,9 @@ public class Bullet {
 
 	//判断炮弹是否击中坦克
 	public void collideWith(Tank tank) {
+		
+		if(this.group == tank.getGroup()) return;
+		
 		Rectangle rect1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
 		Rectangle rect2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
 		if (rect1.intersects(rect2)) {

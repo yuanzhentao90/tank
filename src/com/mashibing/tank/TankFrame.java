@@ -19,6 +19,8 @@ public class TankFrame extends Frame{
 	List<Tank> tanks = new ArrayList<>();
 	static final int GAME_WIDTH=800 , GAME_HEIGHT=600;
 	
+	Explode e = new Explode(100,100,this);
+	
 	public TankFrame() {
 		setSize(GAME_WIDTH, GAME_HEIGHT);
 		setResizable(false);
@@ -81,6 +83,8 @@ public class TankFrame extends Frame{
 				bullets.get(i).collideWith(tanks.get(j));
 			}
 		}
+		
+		e.paint(g);
 	}
 	
 	//键盘监听处理类

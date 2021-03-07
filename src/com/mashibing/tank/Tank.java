@@ -1,16 +1,19 @@
 package com.mashibing.tank;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Tank {
 
 	private int x,y;
 	private Dir dir = Dir.DOWN;
-	private static final int speed = 5;
-	private boolean moving = false;
+	private static final int speed = 1;
+	private boolean moving = true;
 	private TankFrame tf;
 	
 	private boolean isLive = true;
+	
+	private Random random = new Random();
 	
 	private Group group = Group.BAD;
 	
@@ -74,6 +77,8 @@ public class Tank {
 		default:
 			break;
 		}
+		
+		if(random.nextInt(10)>8) this.fire();
 	}
 
 	public int getX() {
