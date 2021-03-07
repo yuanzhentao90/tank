@@ -1,6 +1,7 @@
 package com.mashibing.tank;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
 public class Tank {
@@ -10,6 +11,8 @@ public class Tank {
 	private static final int speed = 5;
 	private boolean moving = true;
 	private TankFrame tf;
+	
+	Rectangle rect = new Rectangle();
 	
 	private boolean isLive = true;
 	
@@ -29,6 +32,11 @@ public class Tank {
 		this.dir = dir;
 		this.group = group;
 		this.tf = tf;
+		
+		rect.x = this.x;
+		rect.y = this.y;
+		rect.width = WIDTH;
+		rect.height = HEIGHT;
 	}
 
 	public void paint(Graphics g) {
@@ -80,9 +88,16 @@ public class Tank {
 		
 		if(this.group == Group.BAD && random.nextInt(10)>8) this.fire();
 		if(this.group == Group.BAD && random.nextInt(100)>95) randomDir();
+		
+		//边界检测
 		boundsCheck();
+		
+		//更新rect
+		rect.x = this.x;
+		rect.y = this.y;
 	}
 
+	//边界检测
 	private void boundsCheck() {
 		if(this.x < 0) x = 0;
 		if(this.y < 30) y =30;

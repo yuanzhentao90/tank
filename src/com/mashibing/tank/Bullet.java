@@ -15,6 +15,8 @@ public class Bullet {
 	private int x,y;
 	private Dir dir;
 	
+	Rectangle rect = new Rectangle();
+	
 	private boolean isLive = true;
 	TankFrame tf = null;
 	private Group group = Group.BAD;
@@ -26,6 +28,11 @@ public class Bullet {
 		this.dir = dir;
 		this.group = group;
 		this.tf = tf;
+		
+		rect.x = this.x;
+		rect.y = this.y;
+		rect.width = WIDTH;
+		rect.height = HEIGHT;
 	}
 	
 	public static int getWIDTH() {
@@ -142,6 +149,10 @@ public class Bullet {
 			break;
 		}
 		
+		//更新rect
+		rect.x = this.x;
+		rect.y = this.y;
+		
 		if (x<0||y<0||x>TankFrame.GAME_WIDTH||y>TankFrame.GAME_HEIGHT) 
 			isLive=false;
 	}
@@ -150,10 +161,13 @@ public class Bullet {
 	public void collideWith(Tank tank) {
 		
 		if(this.group == tank.getGroup()) return;
+		//TODO 优化使用一个rect来控制，避免内存溢出提高代码性能。
+//		Rectangle rect1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
+//		Rectangle rect2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
 		
-		Rectangle rect1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
-		Rectangle rect2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
-		if (rect1.intersects(rect2)) {
+		
+		
+		if (this.rect.intersects(tank.rect)) {
 			tank.die();
 			this.die();
 			int ex = tank.getX()+Tank.WIDTH/2 - Explode.WIDTH/2;
