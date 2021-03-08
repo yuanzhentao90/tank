@@ -9,6 +9,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ResourceMgr {
+	
+	private static ResourceMgr INSTANCE = new ResourceMgr();
+	private ResourceMgr() {}
+	public static ResourceMgr getInstance() {
+		return INSTANCE;
+	}
 
 	public static BufferedImage goodTankL , goodTankU , goodTankR , goodTankD;
 	public static BufferedImage badTankL , badTankU , badTankR , badTankD;

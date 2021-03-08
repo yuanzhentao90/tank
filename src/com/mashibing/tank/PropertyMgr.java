@@ -7,6 +7,13 @@ public class PropertyMgr {
 
 	static Properties props = new Properties();
 	
+	private static PropertyMgr INSTANCE = new PropertyMgr();
+	private PropertyMgr() {}
+	public static PropertyMgr getInstance() {
+		return INSTANCE;
+	}
+	
+	
 	static {
 		try {
 			props.load(PropertyMgr.class.getClassLoader().getResourceAsStream("config"));
