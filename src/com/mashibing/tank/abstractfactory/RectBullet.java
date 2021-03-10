@@ -1,16 +1,21 @@
-package com.mashibing.tank;
+package com.mashibing.tank.abstractfactory;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.mashibing.tank.abstractfactory.BaseBullet;
-import com.mashibing.tank.abstractfactory.BaseTank;
+import com.mashibing.tank.Dir;
+import com.mashibing.tank.Explode;
+import com.mashibing.tank.Group;
+import com.mashibing.tank.ResourceMgr;
+import com.mashibing.tank.Tank;
+import com.mashibing.tank.TankFrame;
 
 /**
  * 炮弹
  * @author Administrator
  */
-public class Bullet extends BaseBullet{
+public class RectBullet extends BaseBullet{
 
 	private static final int speed = 10;
 	public static int WIDTH = ResourceMgr.bulletD.getWidth(),HEIGHT = ResourceMgr.bulletD.getHeight();
@@ -24,7 +29,7 @@ public class Bullet extends BaseBullet{
 	TankFrame tf = null;
 	private Group group = Group.BAD;
 	
-	public Bullet(int x, int y, Dir dir,Group group ,TankFrame tf) {
+	public RectBullet(int x, int y, Dir dir,Group group ,TankFrame tf) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -115,24 +120,10 @@ public class Bullet extends BaseBullet{
 			tf.bullets.remove(this);
 		}
 		
-		switch (dir) {
-		case LEFT:
-			g.drawImage(ResourceMgr.bulletL,x,y,null);
-			break;
-		case UP:
-			g.drawImage(ResourceMgr.bulletU,x,y,null);
-			break;
-		case RIGHT:
-			g.drawImage(ResourceMgr.bulletR,x,y,null);
-			break;
-		case DOWN:
-			g.drawImage(ResourceMgr.bulletD,x,y,null);
-			break;
-
-		default:
-			break;
-		}
-		
+		Color c = g.getColor();
+		g.setColor(Color.YELLOW);
+		g.fillRect(x, y, 20, 20);
+		g.setColor(c);
 		move();
 	}
 
@@ -166,7 +157,7 @@ public class Bullet extends BaseBullet{
 	//判断炮弹是否击中坦克
 	public void collideWith(BaseTank tank) {
 		
-		if(this.group == tank.group) return;
+		if(this.group == tank.getGroup()) return;
 		
 		if (this.rect.intersects(tank.rect)) {
 			tank.die();
