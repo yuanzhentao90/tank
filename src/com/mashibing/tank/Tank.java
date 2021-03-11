@@ -10,7 +10,7 @@ public class Tank {
 	Dir dir = Dir.DOWN;
 	private static final int speed = 5;
 	private boolean moving = true;
-	TankFrame tf;
+	GameModel gm;
 	
 	Rectangle rect = new Rectangle();
 	
@@ -43,13 +43,13 @@ public class Tank {
 	public Tank() {
 	}
 
-	public Tank(int x, int y, Dir dir,Group group,TankFrame tf) {
+	public Tank(int x, int y, Dir dir,Group group,GameModel gm) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.tf = tf;
+		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
@@ -85,7 +85,7 @@ public class Tank {
 
 	public void paint(Graphics g) {
 		
-		if (!isLive) tf.tanks.remove(this);
+		if (!isLive) gm.tanks.remove(this);
 		
 		switch (dir) {
 		case LEFT:
@@ -152,12 +152,7 @@ public class Tank {
 	private void randomDir() {
 		this.dir = Dir.values()[random.nextInt(4)];
 	}
-
-	public Tank(TankFrame tf) {
-		super();
-		this.tf = tf;
-	}
-
+	
 	public void fire() {
 //		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
 //		int bY = this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
