@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  * 炮弹
  * @author Administrator
  */
-public class Bullet {
+public class Bullet extends GameObject{
 
 	private static final int speed = 10;
 	public static int WIDTH = ResourceMgr.bulletD.getWidth(),HEIGHT = ResourceMgr.bulletD.getHeight();
@@ -34,7 +34,7 @@ public class Bullet {
 		rect.width = WIDTH;
 		rect.height = HEIGHT;
 		
-		gm.bullets.add(this);
+		gm.add(this);
 		
 	}
 	
@@ -101,7 +101,7 @@ public class Bullet {
 
 	public void paint(Graphics g) {
 		if (!isLive) {
-			gm.bullets.remove(this);
+			gm.remove(this);
 		}
 		
 		switch (dir) {
@@ -165,7 +165,7 @@ public class Bullet {
 			this.die();
 			int ex = tank.x+Tank.WIDTH/2 - Explode.WIDTH/2;
 			int ey = tank.y+Tank.HEIGHT/2 -Explode.HEIGHT/2;
-			gm.explodes.add(new Explode(ex,ey,gm));
+			gm.add(new Explode(ex,ey,gm));
 		}
 	}
 

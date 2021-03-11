@@ -4,21 +4,27 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class Tank {
+import com.mashibing.tank.strategy.FireStrategy;
 
-	int x,y;
-	Dir dir = Dir.DOWN;
+public class Tank extends GameObject{
+
+	public int x,y;
+	public Dir dir = Dir.DOWN;
 	private static final int speed = 5;
 	private boolean moving = true;
-	GameModel gm;
+	public GameModel gm;
 	
 	Rectangle rect = new Rectangle();
 	
+	public Rectangle getRect() {
+		return rect;
+	}
+
 	private boolean isLive = true;
 	
 	private Random random = new Random();
 	
-	Group group = Group.BAD;
+	public Group group = Group.BAD;
 	
 	FireStrategy fs ;
 	
@@ -85,7 +91,7 @@ public class Tank {
 
 	public void paint(Graphics g) {
 		
-		if (!isLive) gm.tanks.remove(this);
+		if (!isLive) gm.remove(this);
 		
 		switch (dir) {
 		case LEFT:
@@ -162,6 +168,10 @@ public class Tank {
 
 	public void die() {
 		this.isLive = false;
+	}
+	
+	public void stop() {
+		moving = false;
 	}
 	
 }
