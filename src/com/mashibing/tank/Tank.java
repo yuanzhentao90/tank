@@ -9,6 +9,7 @@ import com.mashibing.tank.strategy.FireStrategy;
 public class Tank extends GameObject{
 
 	public int x,y;
+	int oldX,oldY;
 	public Dir dir = Dir.DOWN;
 	private static final int speed = 5;
 	private boolean moving = true;
@@ -44,6 +45,22 @@ public class Tank extends GameObject{
 
 	public void setMoving(boolean moving) {
 		this.moving = moving;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public Tank() {
@@ -115,7 +132,15 @@ public class Tank extends GameObject{
 	}
 	
 
+	public void back() {
+		x = oldX;
+		y = oldY;
+	}
+	
 	private void move() {
+		oldX = x;
+		oldY = y;
+		
 		if (!moving) return;
 		
 		switch (dir) {

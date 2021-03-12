@@ -18,7 +18,7 @@ public class ColliderChain implements Collider {
 		for(int i=0;i<colldierNames.length;i++) {
 			Collider collider = null;
 			try {
-				collider = (Collider)Class.forName(colldierNames[i]).newInstance();
+				collider = (Collider)Class.forName(colldierNames[i].trim()).newInstance();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -37,8 +37,9 @@ public class ColliderChain implements Collider {
 	
 	@Override
 	public boolean collide(GameObject o1, GameObject o2) {
-		for(int i=0;i<colliders.size();i++) {
-			return !colliders.get(i).collide(o1, o2);
+		for(int i=0; i<colliders.size(); i++) {
+			if(!colliders.get(i).collide(o1, o2))
+				return false;
 		}
 		return true;
 

@@ -15,11 +15,11 @@ public class Bullet extends GameObject{
 	private int x,y;
 	private Dir dir;
 	
-	Rectangle rect = new Rectangle();
+	public Rectangle rect = new Rectangle();
 	
 	private boolean isLive = true;
 	GameModel gm = null;
-	private Group group = Group.BAD;
+	public Group group = Group.BAD;
 	
 	public Bullet(int x, int y, Dir dir,Group group ,GameModel gm) {
 		super();
@@ -168,7 +168,7 @@ public class Bullet extends GameObject{
 		return false;
 	}
 
-	private void die() {
+	public void die() {
 		this.isLive = false;
 	}
 	
