@@ -4,3 +4,5 @@ initTankCount=10
 #Strategy
 goodFS=com.mashibing.tank.strategy.FourDirFireStrategy
 badFS=com.mashibing.tank.strategy.DefaultFireStrategy
+#colliders
+colliders=com.mashibing.tank.cof.BulletTankCollider,com.mashibing.tank.cof.TankTankCollider

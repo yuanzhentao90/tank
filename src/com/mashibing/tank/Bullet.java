@@ -153,12 +153,9 @@ public class Bullet extends GameObject{
 	}
 
 	//判断炮弹是否击中坦克
-	public void collideWith(Tank tank) {
+	public boolean collideWith(Tank tank) {
 		
-		if(this.group == tank.group) return;
-		//TODO 优化使用一个rect来控制，避免内存溢出提高代码性能。
-//		Rectangle rect1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
-//		Rectangle rect2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
+		if(this.group == tank.group) return false;
 		
 		if (this.rect.intersects(tank.rect)) {
 			tank.die();
@@ -166,7 +163,9 @@ public class Bullet extends GameObject{
 			int ex = tank.x+Tank.WIDTH/2 - Explode.WIDTH/2;
 			int ey = tank.y+Tank.HEIGHT/2 -Explode.HEIGHT/2;
 			gm.add(new Explode(ex,ey,gm));
+			return true;
 		}
+		return false;
 	}
 
 	private void die() {

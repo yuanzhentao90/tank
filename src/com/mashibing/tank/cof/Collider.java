@@ -8,5 +8,5 @@ import com.mashibing.tank.GameObject;
  */
 public interface Collider {
 
-	void collide(GameObject o1,GameObject o2);
+	boolean collide(GameObject o1,GameObject o2);
 }
