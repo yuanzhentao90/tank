@@ -18,23 +18,21 @@ public class Bullet extends GameObject{
 	public Rectangle rect = new Rectangle();
 	
 	private boolean isLive = true;
-	GameModel gm = null;
 	public Group group = Group.BAD;
 	
-	public Bullet(int x, int y, Dir dir,Group group ,GameModel gm) {
+	public Bullet(int x, int y, Dir dir,Group group) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
 		rect.width = WIDTH;
 		rect.height = HEIGHT;
 		
-		gm.add(this);
+		GameModel.getInstance().add(this);
 		
 	}
 	
@@ -101,7 +99,7 @@ public class Bullet extends GameObject{
 
 	public void paint(Graphics g) {
 		if (!isLive) {
-			gm.remove(this);
+			GameModel.getInstance().remove(this);
 		}
 		
 		switch (dir) {
@@ -150,22 +148,6 @@ public class Bullet extends GameObject{
 		
 		if (x<0||y<0||x>TankFrame.GAME_WIDTH||y>TankFrame.GAME_HEIGHT) 
 			isLive=false;
-	}
-
-	//判断炮弹是否击中坦克
-	public boolean collideWith(Tank tank) {
-		
-		if(this.group == tank.group) return false;
-		
-		if (this.rect.intersects(tank.rect)) {
-			tank.die();
-			this.die();
-			int ex = tank.x+Tank.WIDTH/2 - Explode.WIDTH/2;
-			int ey = tank.y+Tank.HEIGHT/2 -Explode.HEIGHT/2;
-			gm.add(new Explode(ex,ey,gm));
-			return true;
-		}
-		return false;
 	}
 
 	public void die() {

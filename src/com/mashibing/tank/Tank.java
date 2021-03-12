@@ -13,9 +13,8 @@ public class Tank extends GameObject{
 	public Dir dir = Dir.DOWN;
 	private static final int speed = 5;
 	private boolean moving = true;
-	public GameModel gm;
 	
-	Rectangle rect = new Rectangle();
+	public Rectangle rect = new Rectangle();
 	
 	public Rectangle getRect() {
 		return rect;
@@ -66,13 +65,12 @@ public class Tank extends GameObject{
 	public Tank() {
 	}
 
-	public Tank(int x, int y, Dir dir,Group group,GameModel gm) {
+	public Tank(int x, int y, Dir dir,Group group) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
@@ -104,11 +102,13 @@ public class Tank extends GameObject{
 				e.printStackTrace();
 			}
 		}
+		
+		GameModel.getInstance().add(this);
 	}
 
 	public void paint(Graphics g) {
 		
-		if (!isLive) gm.remove(this);
+		if (!isLive) GameModel.getInstance().remove(this);
 		
 		switch (dir) {
 		case LEFT:
