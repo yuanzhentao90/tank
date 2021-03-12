@@ -4,14 +4,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.mashibing.tank.GameObject;
+import com.mashibing.tank.PropertyMgr;
 
 public class ColliderChain implements Collider {
 
 	private List<Collider> colliders = new LinkedList<>();
 	
+	String colliderClasses = (String)PropertyMgr.getValue("colliders");
+	String[] colldierNames = colliderClasses.split(",");
+	
+	
 	public ColliderChain() {
-		add(new BulletTankCollider());
-		add(new TankTankCollider());
+		for(int i=0;i<colldierNames.length;i++) {
+			Collider collider = null;
+			try {
+				collider = (Collider)Class.forName(colldierNames[i]).newInstance();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			add(collider);
+		}
 	}
 	
 	public ColliderChain add(Collider c) {
