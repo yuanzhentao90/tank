@@ -12,7 +12,6 @@ public class Bullet extends GameObject{
 	private static final int speed = 10;
 	public static int WIDTH = ResourceMgr.bulletD.getWidth(),HEIGHT = ResourceMgr.bulletD.getHeight();
 	
-	private int x,y;
 	private Dir dir;
 	
 	public Rectangle rect = new Rectangle();
@@ -152,6 +151,16 @@ public class Bullet extends GameObject{
 
 	public void die() {
 		this.isLive = false;
+	}
+
+	@Override
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	@Override
+	public int getHeight() {
+		return HEIGHT;
 	}
 	
 }

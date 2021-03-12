@@ -8,7 +8,7 @@ import com.mashibing.tank.strategy.FireStrategy;
 
 public class Tank extends GameObject{
 
-	public int x,y;
+//	public int x,y;
 	int oldX,oldY;
 	public Dir dir = Dir.DOWN;
 	private static final int speed = 5;
@@ -199,4 +199,13 @@ public class Tank extends GameObject{
 		moving = false;
 	}
 	
+	@Override
+	public int getWidth() {
+		return WIDTH;
+	}
+
+	@Override
+	public int getHeight() {
+		return HEIGHT;
+	}
 }
