@@ -5,9 +5,9 @@ import java.awt.Graphics;
 
 import com.mashibing.tank.GameObject;
 
-public class RectDecorator extends GODecorator {
+public class TailDecorator extends GODecorator {
 
-	public RectDecorator(GameObject go) {
+	public TailDecorator(GameObject go) {
 		super(go);
 	}
 
@@ -18,8 +18,8 @@ public class RectDecorator extends GODecorator {
 		go.paint(g);
 		
 		Color c = g.getColor();
-		g.setColor(Color.YELLOW);
-		g.drawRect(super.go.getX(),super.go.getY(),super.go.getWidth()+2,super.go.getHeight()+2);
+		g.setColor(Color.WHITE);
+		g.drawLine(go.getX(),go.getY(),go.getX()+go.getWidth(),go.getY()+go.getHeight());
 		g.setColor(c);
 	}
 

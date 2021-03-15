@@ -6,6 +6,7 @@ import com.mashibing.tank.GameModel;
 import com.mashibing.tank.Group;
 import com.mashibing.tank.Tank;
 import com.mashibing.tank.decorator.RectDecorator;
+import com.mashibing.tank.decorator.TailDecorator;
 
 public class DefaultFireStrategy implements FireStrategy {
 
@@ -14,7 +15,10 @@ public class DefaultFireStrategy implements FireStrategy {
 		int bX = t.getX() + Tank.WIDTH/2 - Bullet.WIDTH/2;
 		int bY = t.getY() + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
 		
-		GameModel.getInstance().add(new RectDecorator(new Bullet(bX , bY , t.dir , t.group)));
+		GameModel.getInstance().add(
+				new RectDecorator(
+						new TailDecorator(
+						new Bullet(bX , bY , t.dir , t.group))));
 		
 		if(t.group == Group.GOOD)
 			new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
