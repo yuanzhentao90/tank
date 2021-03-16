@@ -2,8 +2,14 @@ package com.mashibing.tank;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
+import com.mashibing.tank.observer.TankFireEvent;
+import com.mashibing.tank.observer.TankFireHandler;
+import com.mashibing.tank.observer.TankFireObserver;
 import com.mashibing.tank.strategy.FireStrategy;
 
 public class Tank extends GameObject{
@@ -204,5 +210,13 @@ public class Tank extends GameObject{
 	@Override
 	public int getHeight() {
 		return HEIGHT;
+	}
+
+	private List<TankFireObserver> observers = Arrays.asList(new TankFireHandler());
+	public void handleFireKey() {
+		TankFireEvent event = new TankFireEvent(this);
+		for (TankFireObserver tankFireObserver : observers) {
+			tankFireObserver.actionOnFire(event);
+		}
 	}
 }
