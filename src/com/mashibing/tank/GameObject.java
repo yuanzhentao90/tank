@@ -1,8 +1,9 @@
 package com.mashibing.tank;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public abstract class GameObject {
+public abstract class GameObject implements Serializable{
 
 	protected int x,y;
 
